@@ -77,8 +77,9 @@ fit_hist = model.fit(x_train, y_train_onehot,
       callbacks=callbacks,
       shuffle=True)
 
-#y_hat = model.predict_on_batch(x_test)
-model.evaluate(x_test, y_test_onehot, verbose = 1)
+y_hat = model.predict_on_batch(x_test)
+score = model.evaluate(x_test, y_test_onehot, verbose = 1)
+print(score)
 
 
 

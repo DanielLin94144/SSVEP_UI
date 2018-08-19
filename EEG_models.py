@@ -49,7 +49,7 @@ def ShallowConvNet(input_shape):
 #    print(input_shape)
     # start the model
     input_EEG = Input(input_shape) 
-    block1       = Conv2D(10, (1, 13), 
+    block1       = Conv2D(10, (1, 25), 
                                  input_shape=(1, n_ch, n_samp),
                                  kernel_constraint = max_norm(2.))(input_EEG)
     block1       = Conv2D(10, (n_ch, 1), use_bias=False, 
