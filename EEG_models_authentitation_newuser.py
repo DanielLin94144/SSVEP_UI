@@ -21,7 +21,7 @@ def safe_log(x):
 
 n_ch = 9
 n_samp = 247
-n_class = 8
+n_class = 2
 dropout_rate = 0.5
 
 

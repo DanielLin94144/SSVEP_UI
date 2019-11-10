@@ -21,7 +21,7 @@ def safe_log(x):
 
 n_ch = 9
 n_samp = 247
-n_class = 8
+n_class = 2
 dropout_rate = 0.5
 
 
@@ -52,10 +52,10 @@ def ShallowConvNet(input_shape):
     block1       = Conv2D(10, (1, 25), 
                                  input_shape=(1, n_ch, n_samp),
                                  #kernel_constraint = max_norm(2.),
-                                 kernel_regularizer= l2(l=0.3))(input_EEG)
+                                 kernel_regularizer= l2(l=0.1))(input_EEG)
     block1       = Conv2D(10, (n_ch, 25), use_bias=False,  # w2?
                           #kernel_constraint = max_norm(2.), 
-                          kernel_regularizer= l2(l=0.3))(block1)
+                          kernel_regularizer= l2(l=0.1))(block1)
     block1       = BatchNormalization(axis=1, epsilon=1e-05, momentum=0.1)(block1)
     block1       = Activation(square)(block1)
     block1       = AveragePooling2D(pool_size=(1, 30), strides=(1, 10))(block1)
@@ -65,7 +65,7 @@ def ShallowConvNet(input_shape):
     flatten      = Flatten()(block1)
     dense        = Dense(n_class, 
                          #kernel_constraint = max_norm(0.5), 
-                         kernel_regularizer= l2(l=0.3))(flatten)
+                         kernel_regularizer= l2(l=0.1))(flatten)
     softmax      = Activation('softmax')(dense)
     
     return Model(inputs=input_EEG, outputs=softmax)
